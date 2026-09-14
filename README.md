@@ -66,8 +66,9 @@ Defined in `package.json`:
 ```
 
 Notes:
-- The file `src/index.md` references a layout `base.njk`. By Eleventy convention, layouts are typically stored under `src/_includes/`. If that layout is not present in the repo, add it so pages can render correctly. [TODO]
-- No custom `.eleventy.js` configuration file was found; Eleventy defaults are assumed. [TODO if customization is needed]
+- The homepage lives in `src/index.njk`; its front matter contains the editable projects, skills, experience, and education data.
+- The shared page shell is `src/_includes/base.njk`, and visual styling is in `src/assets/style.css`.
+- `.eleventy.js` copies `src/assets/` to the generated site so images and styles remain available on GitHub Pages.
 
 ## Environment Variables
 

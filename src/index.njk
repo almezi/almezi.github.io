@@ -1,0 +1,156 @@
+---
+layout: base.njk
+title: Aulia Mei Azizi | SDET
+description: Aulia Mei Azizi is a SDET focused on Java, Playwright, API automation, and quality engineering.
+projects:
+  - name: Playwright Java Automation — The Jakarta Post
+    description: Cross-browser web UI automation suite built with Java, Playwright, and the Page Object Model.
+    stack: Java · Playwright · Page Object Model
+    url: https://github.com/almezi/pw_java_thejakartapostcom
+  - name: Playwright Java API Automation — JSONPlaceholder
+    description: REST API test suite covering request flows, schema validation, and CRUD behavior with Playwright APIRequestContext.
+    stack: Java · Playwright APIRequestContext · REST
+    url: https://github.com/almezi/pw_java_jsonplaceholder.typicode.com
+skill_groups:
+  - title: Framework design & automation
+    items: [Playwright, Selenium, RestAssured, Java, JavaScript, Badak]
+  - title: CI/CD & release gating
+    items: [Jenkins, GitLab CI, Stash SCM, Deployment gateway criteria]
+  - title: API & data
+    items: [Postman, SQL, MongoDB, Kafka]
+  - title: Test management
+    items: [Jira, TestLink, TDS (Test Data Service)]
+experience:
+  - role: SDET
+    company: Blibli.com
+    dates: Jan 2022 – Oct 2025 · 3 yrs 10 mos
+    location: Jakarta Metropolitan Area · Hybrid
+    bullets:
+      - Designed API and web UI automation frameworks for sprint features and releases, reaching 60%+ automation coverage at squad level.
+      - Built end-to-end automated suites across multiple integrated services for Tukar Tambah and SiPlah, coordinating with developers on testable code paths and trigger conditions.
+      - Integrated automated suites into CI/CD via Jenkins and Stash SCM, enforcing deployment gateway criteria so releases only ship when test thresholds are met.
+  - role: Information Technology Quality Assurance
+    company: PT. Kognitif Skema Indonesia (Schema.id)
+    dates: Nov 2018 – Jan 2022 · 3 yrs 3 mos
+    location: Central Jakarta, Jakarta, Indonesia
+    bullets:
+      - Created test documentation from FSD and TSD requirements, giving client-facing projects a traceable quality baseline before delivery.
+      - Reproduced and tracked user-reported issues in Jira across Mandiri Branchless, Mandiri Paylater, and TAM Computer Vision projects.
+      - Tested new applications and patches with SQL Server, Postman, DBeaver, Putty, Ubuntu Server, Oracle, and Microsoft Server 2016.
+education:
+  - institution: BINUS ONLINE
+    degree: Bachelor's degree, Information Systems
+    period: 2020 – 2022
+    grade: 3.6
+  - institution: Telkom University
+    degree: Associate's degree, Management Information Systems
+    period: 2015 – 2018
+    grade: 3.4
+  - institution: Vocational High School 3 Mataram
+    degree: High School Diploma
+    period: 2012 – 2015
+    grade: —
+---
+
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <p class="eyebrow">Quality engineering · Test automation · Open to opportunities</p>
+    <h1>Aulia Mei Azizi</h1>
+    <p class="position">Senior SDET</p>
+    <p class="location">Yogyakarta, DIY</p>
+    <p class="hero-summary">I build reliable automation systems that help product teams ship with confidence.</p>
+    <nav class="social-buttons" aria-label="Contact and professional links">
+      <a href="mailto:auliameiazizi@gmail.com" class="btn btn-primary">Email me</a>
+      <a href="https://www.linkedin.com/in/auliameiazizi/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/almezi" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="/assets/Aulia_Mei_Azizi_CV.pdf" class="btn btn-secondary" download>Download résumé</a>
+    </nav>
+  </div>
+  <img src="/assets/images/profile.png" alt="Portrait of Aulia Mei Azizi" class="profile-photo">
+</header>
+
+<main class="content">
+  <section aria-labelledby="about-title">
+    <p class="section-kicker">01 / Profile</p>
+    <h2 id="about-title">About</h2>
+    <p>I design and maintain Java-based web and API automation frameworks, then connect them to CI/CD pipelines so quality checks run as part of every release. My focus is turning complex, multi-service features into testable flows with clear deployment gates.</p>
+    <p>At Blibli.com, I helped my squad reach <strong>60%+ automation coverage</strong> across API and web UI testing. I am now looking for a Senior SDET or QA Engineer IC role where I can combine framework design with practical quality coaching.</p>
+  </section>
+
+  <section aria-labelledby="projects-title">
+    <p class="section-kicker">02 / Proof of work</p>
+    <h2 id="projects-title">Featured projects</h2>
+    <div class="project-grid">
+      {% for project in projects %}
+      <article class="project-card">
+        <div>
+          <p class="project-number">0{{ loop.index }}</p>
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description }}</p>
+        </div>
+        <div>
+          <p class="project-stack">{{ project.stack }}</p>
+          <a href="{{ project.url }}" class="text-link" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section aria-labelledby="skills-title">
+    <p class="section-kicker">03 / Capabilities</p>
+    <h2 id="skills-title">Skills</h2>
+    <div class="skills-grid">
+      {% for group in skill_groups %}
+      <article class="skill-category">
+        <h3>{{ group.title }}</h3>
+        <ul class="skill-tags">
+          {% for item in group.items %}
+          <li class="skill-tag">{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section aria-labelledby="experience-title">
+    <p class="section-kicker">04 / Career</p>
+    <h2 id="experience-title">Experience</h2>
+    <div class="experience-list">
+      {% for job in experience %}
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>{{ job.role }}</h3>
+            <p class="company">{{ job.company }}</p>
+          </div>
+          <div class="experience-meta">
+            <p>{{ job.dates }}</p>
+            <p>{{ job.location }}</p>
+          </div>
+        </div>
+        <ul>
+          {% for bullet in job.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section aria-labelledby="education-title">
+    <p class="section-kicker">05 / Education</p>
+    <h2 id="education-title">Education</h2>
+    <div class="education-list">
+      {% for item in education %}
+      <div class="education-item">
+        <h3>{{ item.institution }}</h3>
+        <p>{{ item.degree }}</p>
+        <p class="education-meta">{{ item.period }} · Grade {{ item.grade }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
