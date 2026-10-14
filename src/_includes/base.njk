@@ -2,17 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="{{ description or 'Aulia Mei Azizi — Senior SDET and QA Engineer.' }}">
+    <meta name="theme-color" content="#FFFFFF">
     <title>{{ title or "Aulia Mei Azizi" }}</title>
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-    <a class="skip-link" href="#top">Skip to content</a>
-    {{ content | safe }}
-    <footer class="site-footer">
-        <p>Aulia Mei Azizi · Senior SDET</p>
-        <a href="#top">Back to top ↑</a>
-    </footer>
+    <a class="skip-link" href="#overview">Skip to content</a>
+
+    <header class="nav-desktop" aria-label="Primary">
+        <nav class="nav-desktop-inner">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="mailto:auliameiazizi@gmail.com" class="btn btn-primary btn-nav">Get in touch</a>
+        </nav>
+    </header>
+
+    <div class="page">
+        {{ content | safe }}
+        <footer class="site-footer">
+            <p>Aulia Mei Azizi · Senior SDET</p>
+            <a href="#overview">Back to top ↑</a>
+        </footer>
+    </div>
+
+    <nav class="tab-bar" aria-label="Mobile sections">
+        <a href="#overview" data-tab="overview" class="tab-item is-active">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+            <span>Overview</span>
+        </a>
+        <a href="#projects" data-tab="projects" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            <span>Projects</span>
+        </a>
+        <a href="#skills" data-tab="skills" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>Skills</span>
+        </a>
+        <a href="#experience" data-tab="experience" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Career</span>
+        </a>
+        <a href="mailto:auliameiazizi@gmail.com" class="tab-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Contact</span>
+        </a>
+    </nav>
+
+    <script>
+        (function () {
+            var tabs = document.querySelectorAll(".tab-item[data-tab]");
+            var sections = ["overview", "about", "projects", "skills", "experience", "education"]
+                .map(function (id) { return document.getElementById(id); })
+                .filter(Boolean);
+
+            function setActive(id) {
+                var map = { overview: "overview", about: "overview", projects: "projects", skills: "skills", experience: "experience", education: "experience" };
+                var key = map[id] || "overview";
+                tabs.forEach(function (tab) {
+                    tab.classList.toggle("is-active", tab.getAttribute("data-tab") === key);
+                });
+            }
+
+            if ("IntersectionObserver" in window && sections.length) {
+                var observer = new IntersectionObserver(function (entries) {
+                    var visible = entries
+                        .filter(function (entry) { return entry.isIntersecting; })
+                        .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; })[0];
+                    if (visible) setActive(visible.target.id);
+                }, { rootMargin: "-20% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] });
+                sections.forEach(function (section) { observer.observe(section); });
+            }
+        })();
+    </script>
 </body>
 </html>
