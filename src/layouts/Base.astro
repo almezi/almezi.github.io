@@ -1,0 +1,25 @@
+---
+import "../assets/style.css";
+
+const {
+  title = "Aulia Mei Azizi",
+  description = "Aulia Mei Azizi — Senior SDET and QA Engineer.",
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <footer class="site-footer">
+      <p>Aulia Mei Azizi · Senior SDET</p>
+      <a href="#overview">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

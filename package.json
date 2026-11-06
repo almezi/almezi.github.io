@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,11 +16,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/almezi/almezi.github.io/issues"
   },
   "homepage": "https://github.com/almezi/almezi.github.io#readme",
+  "dependencies": {
+    "astro": "^5.0.0"
+  },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"
   }
