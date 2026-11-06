@@ -1,12 +1,8 @@
 ## Development
 
-When starting the dev server, use background mode:
+Start the dev server with `npm run start` (Astro's `dev` command). It runs in the foreground, so run it in a background shell to keep the terminal usable. Stop it by terminating that process.
 
-```
-astro dev --background
-```
-
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Build and preview with `npm run build` and `npm run preview`. Output goes to `_site/`.
 
 ## Documentation
 

@@ -23,8 +23,5 @@
   "homepage": "https://github.com/almezi/almezi.github.io#readme",
   "dependencies": {
     "astro": "^5.0.0"
-  },
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
   }
 }

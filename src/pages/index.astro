@@ -1,14 +1,24 @@
 ---
+import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import { projects as staticProjects } from "../data/projects";
 import { getFeaturedProjects } from "../lib/github";
+import profilePhoto from "../assets/images/profile.png";
+import cvUrl from "../assets/Aulia_Mei_Azizi_CV.pdf?url";
 
 let projects = staticProjects;
 
 try {
   const dynamicProjects = await getFeaturedProjects();
   if (dynamicProjects && dynamicProjects.length > 0) {
-    projects = dynamicProjects;
+    projects = staticProjects.map((project) => {
+      const live = dynamicProjects.find((repo) => repo.url === project.url);
+      if (!live) return project;
+      return {
+        ...project,
+        description: live.description || project.description,
+      };
+    });
   }
 } catch (_error) {
   // Use static fallback
@@ -34,13 +44,14 @@ const description = "Aulia Mei Azizi is a SDET focused on Java, Playwright, API 
         <a href="mailto:auliameiazizi@gmail.com" class="btn btn-primary">Email me</a>
         <a href="https://www.linkedin.com/in/auliameiazizi/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://github.com/almezi" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="/assets/Aulia_Mei_Azizi_CV.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a>
+        <a href={cvUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a>
       </nav>
     </div>
-    <div class="avatar-wrap"><div class="avatar-ring"><img src="/assets/images/profile.png" alt="Aulia Mei Azizi profile photo" width="130" height="130" /></div></div>
+    <div class="avatar-wrap"><div class="avatar-ring"><Image src={profilePhoto} alt="Aulia Mei Azizi profile photo" class="profile-photo" width={260} height={260} loading="eager" /></div></div>
   </section>
 
-  <section id="about" aria-labelledby="about-title">
+  <div class="content">
+    <section id="about" aria-labelledby="about-title">
     <p class="eyebrow">About</p>
     <h2 id="about-title">About Me</h2>
     <p>I build reliable automation systems that help product teams ship with confidence.</p>
@@ -131,4 +142,5 @@ const description = "Aulia Mei Azizi is a SDET focused on Java, Playwright, API 
       ))}
     </div>
   </section>
+  </div>
 </Base>

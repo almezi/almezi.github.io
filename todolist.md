@@ -20,10 +20,12 @@
 
 ## Phase 4: CI/CD & Deployment - COMPLETE ✅
 - [x] **Task 13**: Update `.github/workflows/deploy.yml` for Astro build
-- [ ] **Task 14**: Test build locally (`npm install && npm run build`)
-- [ ] **Task 15**: Test dev server (`npm run start`)
+- [x] **Task 14**: Test build locally (`npm install && npm run build`)
+- [x] **Task 15**: Test dev server (`npm run start`)
 - [ ] **Task 16**: Verify GitHub Actions deployment works
+  - Workflow validated locally: YAML parses, deploy artifact path `./_site` matches `outDir: '_site'`, Pages source is GitHub Actions.
+  - Live run needs a push to `master`, which is the deploy trigger.
 
 ## Phase 5: Polish
-- [ ] **Task 17**: Update README.md with new commands
-- [ ] **Task 18**: Clean up old Eleventy files (.eleventy.js, etc.)
+- [x] **Task 17**: Update README.md with new commands
+- [x] **Task 18**: Clean up old Eleventy files (.eleventy.js, etc.)
