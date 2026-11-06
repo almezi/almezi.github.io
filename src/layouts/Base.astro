@@ -1,0 +1,20 @@
+---
+import "./assets/style.css";
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="{{ description or 'Aulia Mei Azizi — Senior SDET and QA Engineer.' }}" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>{title || "Aulia Mei Azizi"}</title>
+  </head>
+  <body>
+    <slot />
+    <footer class="site-footer">
+      <p>Aulia Mei Azizi · Senior SDET</p>
+      <a href="#overview">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
