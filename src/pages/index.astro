@@ -1,28 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
-import { projects as staticProjects } from "../data/projects";
-import { getFeaturedProjects } from "../lib/github";
+import { projects } from "../data/projects";
 import profilePhoto from "../assets/images/profile.png";
 import cvUrl from "../assets/Aulia_Mei_Azizi_CV.pdf?url";
-
-let projects = staticProjects;
-
-try {
-    const dynamicProjects = await getFeaturedProjects();
-      if (dynamicProjects.length > 0) {
-    projects = staticProjects.map((project) => {
-      const live = dynamicProjects.find((repo) => repo.url === project.url);
-      if (!live) return project;
-      return {
-        ...project,
-        description: live.description || project.description,
-      };
-    });
-  }
-} catch (_error) {
-  // Use static fallback
-}
 
 const skill_groups = [{title:"Framework design & automation",featured:["Playwright","Playwright APIRequestContext","WebdriverIO","Appium","Cypress","Cucumber BDD"],items:["Playwright","Playwright APIRequestContext","WebdriverIO","Appium","Cypress","Cucumber BDD","Selenium","RestAssured","Page Object Model","Internal automation frameworks"]},{title:"Languages & platforms",featured:["Java","TypeScript","Kotlin Multiplatform","Compose Multiplatform","MCP"],items:["Java","TypeScript","JavaScript","Groovy","Kotlin Multiplatform","Compose Multiplatform","Android","iOS","MCP"]},{title:"CI/CD & release gating",featured:["Maven"],items:["Jenkins","GitLab CI","Maven","Source control workflows","Deployment quality gates"]},{title:"API, data & test management",featured:["REST"],items:["Postman","REST","SQL","MongoDB","Kafka","Jira","TestLink","Test data management"]}];
 

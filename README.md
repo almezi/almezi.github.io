@@ -6,7 +6,7 @@ Personal portfolio of Aulia Mei Azizi, Senior SDET. Static site built with [Astr
 
 - Astro 5, static output (`outDir: _site`)
 - Plain CSS design system in `src/assets/style.css`
-- Featured projects fetched from the GitHub API at build time, with static fallback
+- Featured projects curated in `src/data/projects.ts`
 
 ## Requirements
 
@@ -28,12 +28,10 @@ Personal portfolio of Aulia Mei Azizi, Senior SDET. Static site built with [Astr
 /
 ├── src/
 │   ├── assets/          # CSS, images, CV PDF (bundled and optimized)
-│   ├── data/            # static project list, fallback content
+│   ├── data/            # featured projects (source of truth)
 │   ├── layouts/         # Base.astro page shell: head, nav, footer, tab bar
-│   ├── lib/             # GitHub API fetch helper
 │   └── pages/
-│       ├── index.astro
-│       └── about.astro
+│       └── index.astro
 ├── astro.config.mjs
 └── package.json
 ```
@@ -41,8 +39,6 @@ Personal portfolio of Aulia Mei Azizi, Senior SDET. Static site built with [Astr
 ## Deployment
 
 `.github/workflows/deploy.yml` builds with Astro and publishes `_site/` to GitHub Pages on every push to `master`. The repository's Pages source is set to GitHub Actions.
-
-Optional: set a `GITHUB_TOKEN` repository secret to raise the GitHub API rate limit for the build-time project fetch. Without it the site falls back to the static list in `src/data/projects.ts`.
 
 ## Design reference
 
