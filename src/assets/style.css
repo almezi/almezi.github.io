@@ -213,13 +213,13 @@ h3 {
 
 .hero-summary,
 .content section > p {
-    max-width: 36rem;
     color: var(--color-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.7;
 }
 
 .hero-summary {
+    max-width: 36rem;
     margin: 0 0 1rem;
     font-size: 1rem;
 }
@@ -326,6 +326,11 @@ h3 {
     padding: 1rem 0 2rem;
 }
 
+/* Let sections shrink below their content's intrinsic width so the carousel can scroll internally */
+.content > section {
+    min-width: 0;
+}
+
 section {
     scroll-margin-top: 5rem;
 }
@@ -335,7 +340,124 @@ strong {
     font-weight: 700;
 }
 
-.project-grid,
+/* Project carousel */
+
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    display: flex;
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.carousel-slide:last-child {
+    scroll-snap-align: end;
+}
+
+.carousel-slide .project-card {
+    flex: 1;
+    min-width: 0;
+}
+
+.carousel-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 100%;
+    margin-top: 1.25rem;
+}
+
+.carousel-controls[hidden] {
+    display: none;
+}
+
+.carousel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 999px;
+    background: var(--color-surface-card);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+}
+
+.carousel-btn svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.carousel-btn:hover:not(:disabled),
+.carousel-btn:focus-visible {
+    background: #f8fafc;
+}
+
+.carousel-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.carousel-btn:disabled {
+    cursor: default;
+    opacity: 0.35;
+}
+
+.carousel-dots {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    max-width: 100%;
+}
+
+.carousel-dot {
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.375rem;
+    border: 0;
+    border-radius: 999px;
+    background-color: #cbd5e1;
+    background-clip: content-box;
+    cursor: pointer;
+    transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+/* Active page: teal pill. Distance 1-3: progressively smaller dots. */
+.carousel-dot[data-d="0"] {
+    width: 2rem;
+    background-color: var(--color-brand-primary);
+}
+
+.carousel-dot[data-d="2"] {
+    width: 1rem;
+    padding: 0.3125rem;
+}
+
+.carousel-dot[data-d="3"] {
+    width: 0.875rem;
+    padding: 0.25rem;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -627,7 +749,10 @@ a.company:focus-visible {
         scroll-margin-top: 6rem;
     }
 
-    .project-grid,
+    .carousel-slide {
+        flex-basis: calc(50% - 0.75rem);
+    }
+
     .skills-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

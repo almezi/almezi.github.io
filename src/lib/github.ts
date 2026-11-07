@@ -1,20 +1,24 @@
 export async function getFeaturedProjects() {
-  // Fetch the two actual GitHub repos that are the featured projects
-  const repoNames = ["pw_java_thejakartapostcom", "pw_java_jsonplaceholder.typicode.com"];
-  const repos: Array<{
-    name: string;
-    description: string;
-    url: string;
-    type: string;
-    tags: string[];
-    lastUpdated?: string;
-    stars?: number;
-  }> = [];
+  // Fetch the GitHub repos behind the featured projects so descriptions stay fresh at build time
+  const repoNames = [
+    "saku-appium",
+    "SimpleMoneyTracker-KT",
+    "petstore-swagger-io-playwright",
+    "saucedemocom-ui-playwright",
+    "AI-CICD",
+    "pw_java_jsonplaceholder.typicode.com",
+    "IFG_Hackerrank",
+    "pw_java_thejakartapostcom",
+    "pw_jumiacomng",
+    "cy-tiketcom",
+    "ebay-search",
+  ];
+
+  const repos: Array<{ url: string; description: string }> = [];
 
   for (const repoName of repoNames) {
     try {
-      const url = `https://api.github.com/repos/almezi/${repoName}`;
-      const response = await fetch(url, {
+      const response = await fetch(`https://api.github.com/repos/almezi/${repoName}`, {
         headers: {
           "Accept": "application/vnd.github.v3+json",
         },
@@ -22,13 +26,8 @@ export async function getFeaturedProjects() {
       if (response.ok) {
         const data = await response.json();
         repos.push({
-          name: data.name || repoName,
-          description: data.description || "",
           url: data.html_url || `https://github.com/almezi/${repoName}`,
-          type: data.fork ? "API" : "Web UI",
-          tags: [],
-          lastUpdated: data.updated_at,
-          stars: data.stargazers_count || 0,
+          description: data.description || "",
         });
       }
     } catch (error) {
@@ -36,9 +35,5 @@ export async function getFeaturedProjects() {
     }
   }
 
-  // If we got at least one repo, return them; otherwise fall back to empty (will use static)
-  if (repos.length > 0) {
-    return repos;
-  }
-  return [];
+  return repos;
 }
