@@ -39,7 +39,3 @@ Personal portfolio of Aulia Mei Azizi, Senior SDET. Static site built with [Astr
 ## Deployment
 
 `.github/workflows/deploy.yml` builds with Astro and publishes `_site/` to GitHub Pages on every push to `master`. The repository's Pages source is set to GitHub Actions.
-
-## Design reference
-
-`design.md` documents the design tokens, typography scale, and component rules.
