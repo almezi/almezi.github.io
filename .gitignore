@@ -27,3 +27,6 @@ Thumbs.db
 # Astro
 .astro/
 dist/
+
+# Agent session artifacts
+.zcode/
